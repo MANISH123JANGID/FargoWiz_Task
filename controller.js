@@ -19,3 +19,21 @@ exports.save = (req, res)=>{
         
     })
 }
+
+exports.fetch= (req,res) => {
+  User.find().exec(async (err,data)=>{
+    if(err) {
+      res.status(400).json({
+        message:'Error in fetching data'
+      })
+    }
+     if(data===0){
+      res.status(500).json({
+        message:"No Data Found"
+      })
+     }
+     else{
+      res.status(200).json({message:"USER DATA FOUND!",data: data})
+     }
+  })
+}
